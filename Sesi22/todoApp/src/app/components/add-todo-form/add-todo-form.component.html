@@ -1,0 +1,23 @@
+<form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      name="inputTodo"
+      placeholder="Enter todo.."
+      class="form-control"
+      formControlName="inputTodo"
+      (change)="handleIsSubmitState()"
+    />
+    <input
+      type="submit"
+      value="Add Todo"
+      class="btn btn-primary"
+    />
+  </div>
+  <div class="validator" *ngIf="inputTodo && inputTodo?.errors?.minlength && isSubmit == true">
+    Name is required with minimum length {{inputTodo?.errors?.minlength?.requiredLength}}!
+  </div>
+  <div class="validator" *ngIf="inputTodo && inputTodo?.errors?.required && isSubmit == true">
+      Name cannot be empty!
+  </div>
+</form>

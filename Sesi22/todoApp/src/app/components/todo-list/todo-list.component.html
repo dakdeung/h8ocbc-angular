@@ -1,0 +1,47 @@
+<app-add-todo-form (newTodoEvent)="addTodo($event)">
+</app-add-todo-form>
+<h1 style="text-align: center;">Todo</h1>
+<ol *ngFor="let todo of todos; let i = index;" class="list-group">
+  <form [formGroup]="todoForm" (ngSubmit)="onSaved(i)">
+    <li *ngIf="!todo.completed" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-3 me-auto" *ngIf="!todo.edited">
+        <div class="content {{(todo.completed ? 'done' : '')}}">
+          {{i + 1}}.{{todo.context}}
+        </div>
+      </div>
+      <input *ngIf="todo.edited" type="text" name="inputTodo" value="{{todo.context}}" class="form-control"
+        formControlName="inputTodo" (change)="handleIsSubmitState()" style="margin-left: -10px;" />
+      <button *ngIf="!todo.edited" style="margin-right: 5px;" class="btn btn-sm completed" (click)="onEditable(i)">
+        <i class="bi bi-pencil"></i>
+      </button>
+      <button *ngIf="todo.edited" style="margin-right: 5px;margin-left: 5px;" class="btn btn-success btn-sm completed">
+        <i class="bi bi-box-arrow-down"></i>
+      </button>
+      <button style="margin-right: 5px;" class="btn btn-warning btn-sm completed" (click)="toggleDone(i)">
+        <i class="bi bi-check-circle"></i>
+      </button>
+      <button class="btn btn-danger btn-sm" (click)="deleteTodo(i)">
+        <i class="bi bi-trash-fill"></i>
+      </button>
+      <div>
+        <div class="validator" *ngIf="inputTodo && inputTodo?.errors?.minlength && isDone == true && todo.edited">
+          Name is required with minimum length {{inputTodo?.errors?.minlength?.requiredLength}}!
+        </div>
+        <div class="validator" *ngIf="inputTodo && inputTodo?.errors?.required && isDone == true && todo.edited">
+          Name cannot be empty!
+        </div>
+      </div>
+    </li>
+  </form>
+</ol>
+
+<h1 style="text-align: center;">Finish</h1>
+<ol *ngFor="let todo of todos; let i = index;" class="list-group">
+  <li *ngIf="todo.completed" class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-3 me-auto">
+      <div *ngIf="!todo.edited" class="content {{(todo.completed ? 'done' : '')}}">
+        {{i + 1}}.{{todo.context}}
+      </div>
+    </div>
+  </li>
+</ol>

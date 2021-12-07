@@ -1,0 +1,29 @@
+<h1>Three Most Populated Countries</h1>
+<div class="container">
+  <div class="row">
+      <div class="col text-center" *ngFor="let country of bigPopulated">
+          <div class="card" (click)="onCardClick(country)">
+              <div class="card-body">
+                  <h2>{{country.name}}</h2>
+                  <p>{{country.population | number}}</p>
+                  <p>People</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<h1>Three Largest Countries</h1>
+<div class="container">
+  <div class="row">
+      <div class="col text-center" *ngFor="let country of bigArea">
+          <div class="card" (click)="onCardClick(country)">
+              <div class="card-body">
+                  <h2>{{country.name}}</h2>
+                  <p>{{country.population | number}} km&#178;</p>
+                  <p>People</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

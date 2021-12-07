@@ -1,0 +1,102 @@
+<div *ngIf="!isDelete">
+  <h1 mat-dialog-title>{{Title}}</h1>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title">
+          <mat-label *ngIf="title && title.touched && title.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName">
+          <mat-label *ngIf="firstName && firstName.touched && firstName.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName">
+          <mat-label *ngIf="lastName && lastName.touched && lastName.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isEdit">
+        <mat-form-field appearance="fill">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" >
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{role.name}}
+            </mat-option>
+          </mat-select>
+          <!-- <input mat-input *ngIf="isEdit" formControlName= "editRole"> -->
+          <mat-label *ngIf="role && role.touched && role.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div *ngIf="isEdit">
+        <mat-form-field appearance="fill">
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="editRole" readonly>
+          <mat-label *ngIf="editRole && editRole.touched && editRole.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-label *ngIf="email && email.touched && email.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isEdit">
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-label *ngIf="password && password.touched && password.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+        </mat-form-field>
+      </div>
+      <div *ngIf="!isEdit">
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput formControlName="confirmPassword" type="password">
+          <mat-label *ngIf="confirmPassword && confirmPassword.touched && confirmPassword.invalid" style="color: red;">
+            is invalid
+          </mat-label>
+          <!-- <mat-label *ngIf="f.confirmPassword.errors.MustMatch" style="color: red;">
+            is not match
+          </mat-label> -->
+          <!-- *ngIf="form.errors?.notSame" -->
+        </mat-form-field>
+      </div>
+
+
+    </div>
+    <div mat-dialog-actions>
+      <button class="btn btn-primary" mat-button type="submit">{{btn}}</button>
+      <button class="btn btn-secondary"mat-button mat-dialog-close>Cancel</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="isDelete">
+  <h1 mat-dialog-title>{{Title}}</h1>
+  <h3 mat-dialog-context>Are you sure want to delete {{name}}</h3>
+  <div mat-dialog-actions>
+    <button class="btn btn-secondary" mat-button (click)="employeeDelete()">Delete</button>
+    <button class="btn btn-danger" mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  </div>
+</div>

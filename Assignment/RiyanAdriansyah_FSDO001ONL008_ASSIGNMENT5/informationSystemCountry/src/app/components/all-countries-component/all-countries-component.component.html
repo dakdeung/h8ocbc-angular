@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="row" >
+      <div class="col text-center" *ngFor="let country of country | slice:0:3;">
+          <div class="card" (click)="onCardClick(country)">
+              <div class="card-body">
+                  <h1>{{country.name}}</h1>
+                  <p>Capital</p>
+                  <p>( {{country.capital}} )</p>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  <div class="row">
+      <div class="col-md-6 col-lg-4 offset-lg-2 text-center" *ngFor="let a of country | slice:3:4;" >
+          <div class="card" (click)="onCardClick(a)">
+              <div class="card-body" >
+                <h1>{{a.name}}</h1>
+                <p>Capital</p>
+                <p>( {{a.capital}} )</p>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4 offset-lg-0 text-center" *ngFor="let a of country | slice:4:5;" >
+        <div class="card" (click)="onCardClick(a)">
+            <div class="card-body" >
+              <h1>{{a.name}}</h1>
+              <p>Capital</p>
+              <p>( {{a.capital}} )</p>
+            </div>
+        </div>
+    </div>
+      <div class="w-100"></div>
+  </div>
+</div>

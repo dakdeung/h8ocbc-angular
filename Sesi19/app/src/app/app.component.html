@@ -1,0 +1,5 @@
+<h1>Test Angular</h1>
+<app-header ></app-header>
+<app-button [message]="parentMessage" (itemEvent)="addCounter()"></app-button>
+<app-button (itemEvent)="addDecrement()"></app-button>
+<p>{{counter}}</p>
